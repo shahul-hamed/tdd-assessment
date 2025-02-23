@@ -2,7 +2,19 @@ class StringCalculator {
   dynamic addNumbersFromString(String input) {
     /// sum if input is not empty
     if(input.isNotEmpty) {
-      List<String> numbers = input.split(RegExp(r'[,\n]')); /// split comma or new line characters
+      List<String> numbers = [];
+      /// handle delimiter
+      if(input.startsWith('//')) {
+        final delimiterLineEndIndex = input.indexOf('\n');
+        final delimiter = input.substring(
+            2, delimiterLineEndIndex); // Extract the custom delimiter.
+        input =
+            input.substring(delimiterLineEndIndex + 1);
+        numbers = input.split(delimiter);
+      }
+      else {
+        numbers = input.split(RegExp(r'[,\n]')); /// split comma or new line characters
+      }
       try{
         return _addNumbers(numbers);
       }
@@ -21,7 +33,7 @@ class StringCalculator {
 int _addNumbers(List<String> numbers) {
   int sum = 0;
   List<int> negativeNumbers = [];
-  print("negative nos-> $negativeNumbers");
+
   /// iterate list of numbers to sum
   for (var number in numbers) {
     final num = int.tryParse(number);
@@ -36,7 +48,6 @@ int _addNumbers(List<String> numbers) {
     else {
       sum += num;
     }
-    // print("negative nos-> $negativeNumbers");
 
   }
   /// if string is having negative numbers then throw exception with message

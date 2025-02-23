@@ -11,6 +11,10 @@ void main() {
       expect(stringCalculator.addNumbersFromString(""), 0);
     });
     /// Test for Adding numbers from a string with comma separated values
+    test('Handle one number from a string and return that', (){
+      expect(stringCalculator.addNumbersFromString('2'), 2);
+    });
+    /// Test for Adding numbers from a string with comma separated values
     test('Add numbers from a string with comma separated values', (){
       expect(stringCalculator.addNumbersFromString('1,2,5'), 8);
     });
@@ -26,7 +30,10 @@ void main() {
     test('Handle multiple negative numbers ', (){
       expect(stringCalculator.addNumbersFromString('1,-2,-5,6'), 'Negative numbers not allowed: -2,-5');
     });
-
+    /// Test for support delimiter also
+    test('Supports delimiter also while sum of numbers', (){
+      expect(stringCalculator.addNumbersFromString('//;\n2;3;4'), 9);
+    });
   });
 
 }
