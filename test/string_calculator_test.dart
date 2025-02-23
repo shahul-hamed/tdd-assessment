@@ -12,4 +12,8 @@ void main() {
   test('Add numbers from a string with comma separated values', (){
     expect(stringCalculator.addNumbersFromString('1,2,5'), 8);
   });
+  /// Test for Adding numbers from a string with newline between numbers
+  test('Add numbers from a string with newline between numbers', (){
+    expect(stringCalculator.addNumbersFromString('1\n2,4'), 7);
+  });
 }
