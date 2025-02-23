@@ -3,7 +3,7 @@ class StringCalculator {
     int sum = 0;
     /// sum if input is not empty
     if(input.isNotEmpty) {
-      List<String> numbers = input.split(',');
+      List<String> numbers = input.split(RegExp(r'[,\n]'));
      sum =  addNumbers(numbers);
     }
     return sum;
@@ -11,7 +11,7 @@ class StringCalculator {
 }
 
 int addNumbers(List<String> numbers) {
-  int sum=0;
+  int sum = 0;
   /// iterate list to sum
   for (var number in numbers) {
     final num = int.tryParse(number);
